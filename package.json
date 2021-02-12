@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --config webpack.config.js",
-    "lint": "pretier --check && eslint .",
-    "lint:fix": "pretier --write && eslint . --fix",
+    "lint": "prettier --check . && eslint .",
+    "lint:fix": "prettier --write . && eslint . --fix",
     "dev": "webpack serve"
   },
   "repository": {
@@ -47,5 +47,8 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{css,md,yml,html}": "prettier --write"
+  },
+  "dependencies": {
+    "google-translate-open-api": "^1.3.7"
   }
 }
