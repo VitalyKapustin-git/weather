@@ -18,6 +18,6 @@ module.exports = {
   },
   rules: {
     'import/prefer-default-export': 'off',
-    'max-len': ['error', { ignoreComments: true, ignoreUrls: true }],
+    'max-len': ['error', { ignoreComments: true, ignoreUrls: true, code: 120 }],
   },
 };

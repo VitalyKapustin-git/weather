@@ -1,3 +1,3 @@
-import drawInfoPage from './drawInfoPage';
+import drawMainPage from './mainPage';
 
-drawInfoPage(document.querySelector('#app'));
+drawMainPage(document.querySelector('#app'));
