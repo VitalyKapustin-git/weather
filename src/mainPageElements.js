@@ -16,9 +16,11 @@ export function drawWeatherBlock(el, array) {
 	`;
 }
 
-export function addEL(field, map, button) {
+export function addEL(field, map, button, weather, history) {
 
 	const inputField = field;
+	const weatherBlock = weather;
+	const historyBlock = history;
 
 	button.addEventListener('click', async () => {
 
@@ -27,26 +29,25 @@ export function addEL(field, map, button) {
 		};
 
 		if (inputField.value) {
-			const viewedCitiesList = document.querySelector('.viewedCitiesList');
+			const viewedCitiesList = historyBlock.querySelector('.viewedCitiesList');
 			const userCity = inputField.value;
 			inputField.value = '';
 
 			try {
-				await changeWeatherInfo(userCity, map);
-
+				await changeWeatherInfo(userCity, map, weatherBlock);
 				const paragraph = document.createElement("p");
 				paragraph.className = userCity;
 				paragraph.textContent = userCity;
 				viewedCitiesList.append(paragraph);
 
-				document.querySelector(`.${userCity}`).addEventListener('click', async (event) => {
-					await changeWeatherInfo(event.target.innerText, map);
+				viewedCitiesList.querySelector(`.${userCity}`).addEventListener('click', async (event) => {
+					await changeWeatherInfo(event.target.innerText, map, weatherBlock);
 				});
 
 				localStorage.setItem(`${userCity}`, `${userCity}`);
 
 				if (localStorage.length > 10) {
-					localStorage.removeItem(document.querySelector(".viewedCitiesList").childNodes[0].innerText);
+					localStorage.removeItem(historyBlock.querySelector(".viewedCitiesList").childNodes[0].innerText);
 					viewedCitiesList.removeChild(viewedCitiesList.childNodes[0]);
 				}
 			} catch {
@@ -56,9 +57,10 @@ export function addEL(field, map, button) {
 	});
 }
 
-export function drawInputButton(block1, block2, map) {
+export function drawInputButton(block1, block2, map, block3) {
 	const inputBlock = block1;
 	const historyBlock = block2;
+	const weatherBlock = block3;
 
 	inputBlock.innerHTML = `
 		<input class='cityInput' placeholder='Введите город' />
@@ -79,23 +81,25 @@ export function drawInputButton(block1, block2, map) {
 
 	const cityInputEl = inputBlock.querySelector('.cityInput');
 	const inputButton = inputBlock.querySelector('.submitCity');
-	addEL(cityInputEl, map, inputButton);
+	addEL(cityInputEl, map, inputButton, weatherBlock, historyBlock);
 }
 
-export function recoverStorageCities(map) {
+export function recoverStorageCities(map, root, weather) {
 
 	const mapObject = map;
+	const rootBlock = root;
+	const weatherBlock = weather;
 
 	Object.values(localStorage).forEach((el) => {
-		const viewedCitiesList = document.querySelector('.viewedCitiesList');
+		const viewedCitiesList = rootBlock.querySelector('.viewedCitiesList');
 		const userCity = el;
 		const paragraph = document.createElement("p");
 		paragraph.className = userCity;
 		paragraph.textContent = userCity;
 		viewedCitiesList.append(paragraph);
 
-		document.querySelector(`.${userCity}`).addEventListener('click', async (event) => {
-			await changeWeatherInfo(event.target.innerText, mapObject);
+		viewedCitiesList.querySelector(`.${userCity}`).addEventListener('click', async (event) => {
+			await changeWeatherInfo(event.target.innerText, mapObject, weatherBlock);
 		});
 	});
 }

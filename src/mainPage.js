@@ -18,9 +18,9 @@ export default async function drawMainPage(block) {
 	rootBlock.append(historyBlock);
 
 	drawWeatherBlock(weatherBlock, weatherInfo);
-	drawInputButton(inputBlock, historyBlock, cityMap);
+	drawInputButton(inputBlock, historyBlock, cityMap, weatherBlock);
 
 	if (localStorage.length > 0) {
-		recoverStorageCities(cityMap);
+		recoverStorageCities(cityMap, rootBlock, weatherBlock);
 	}
 }

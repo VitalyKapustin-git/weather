@@ -13,12 +13,13 @@ export async function getWeather(city) {
 	return [city || cityGeo, temp, weatherIcon, cityCoordinates];
 }
 
-export async function changeWeatherInfo(city, map) {
+export async function changeWeatherInfo(city, map, weather) {
 	const cityInfo = await getWeather(city);
 	const cityCoordinates = cityInfo[3];
+	const weatherBlock = weather;
 
-	document.querySelector('.tempInfo').innerText = cityInfo[1];
-	document.querySelector('.weatherIcon').src = `https://openweathermap.org/img/wn/${cityInfo[2]}.png`;
-	document.querySelector('.userCity').innerHTML = cityInfo[0];
+	weatherBlock.querySelector('.tempInfo').innerText = cityInfo[1];
+	weatherBlock.querySelector('.weatherIcon').src = `https://openweathermap.org/img/wn/${cityInfo[2]}.png`;
+	weatherBlock.querySelector('.userCity').innerHTML = cityInfo[0];
 	changeCityMap(cityCoordinates, map);
 }

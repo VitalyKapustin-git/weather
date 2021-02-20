@@ -15,8 +15,9 @@ test('if input field and submit button are on page', () => {
 	expect(testRootElement.querySelector('.submitCity')).toBeDefined();
 });
 
-test('if weather change works', () => {
-	testRootElement.querySelector('.cityInput').value = 'Tashkent';
+test('if weather change works', async () => {
+	testRootElement.querySelector('.cityInput').value = 'Караганды';
 	testRootElement.querySelector('.submitCity').click();
+	await new Promise(resolve => setTimeout(resolve, 4000));
 	expect(testRootElement.querySelector('.userCity').innerHTML).toBe('Tashkent');
 });
