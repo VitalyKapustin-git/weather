@@ -26,10 +26,9 @@ export function addEL(field, map, button, weather, history) {
       window.alert(`Введите город`);
     }
 
-    if (inputField.value) {
+    if (inputField.value && !historyBlock.querySelector(`.${inputField.value}`)) {
       const viewedCitiesList = historyBlock.querySelector(".viewedCitiesList");
-      const userCity = inputField.value;
-      inputField.value = "";
+	  const userCity = inputField.value;
 
       try {
         await changeWeatherInfo(userCity, map, weatherBlock);
@@ -56,7 +55,8 @@ export function addEL(field, map, button, weather, history) {
       } catch {
         window.alert(`Города ${userCity} не существует`);
       }
-    }
+	}
+	inputField.value = "";
   });
 }
 
