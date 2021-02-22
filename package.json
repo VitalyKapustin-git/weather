@@ -50,8 +50,5 @@
     "*.js": "eslint --cache --fix",
     "*.{css,md,yml,html}": "prettier --write"
   },
-  "dependencies": {
-    "google-translate-open-api": "^1.3.7",
-    "leaflet": "^1.7.1"
-  }
+  "dependencies": {}
 }
