@@ -1,5 +1,6 @@
 import drawMainPage from "../src/mainPage";
 
+global.L = require("leaflet");
 global.fetch = require("node-fetch");
 
 let testRootElement;

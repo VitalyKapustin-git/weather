@@ -1,6 +1,7 @@
 import drawMainPage from "../src/mainPage";
 import { getWeather } from "../src/weather";
 
+global.L = require("leaflet");
 global.fetch = require("node-fetch");
 
 let testRootElement;
