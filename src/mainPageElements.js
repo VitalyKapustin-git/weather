@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
-/* eslint-disable prefer-destructuring */
 
-import { changeWeatherInfo } from "./weather";
+import { changeWeatherInfo } from "./changeWeather";
 
 export function drawWeatherBlock(el, array) {
   const [userCity, tempInfo, weatherIcon] = array;

@@ -1,4 +1,4 @@
-import { getWeather } from "./weather";
+import { getWeather } from "./getWeather";
 import {
   drawWeatherBlock,
   drawInputButton,
