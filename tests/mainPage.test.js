@@ -1,12 +1,12 @@
-import drawMainPage from '../src/mainPage';
-import * as weather from '../src/getWeather';
+import drawMainPage from "../src/mainPage";
+import * as weather from "../src/getWeather";
 
 global.L = require("leaflet");
 
 let testRootElement;
 
 beforeEach(async () => {
-  weather.getWeather = jest.fn(() => ['Ташкент', 25, '25d', [23.123, 0.45]]);
+  weather.getWeather = jest.fn(() => ["Ташкент", 25, "25d", [23.123, 0.45]]);
   testRootElement = document.createElement("div");
   testRootElement.className = "test";
   await drawMainPage(testRootElement);
