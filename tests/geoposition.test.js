@@ -1,4 +1,3 @@
-
 import { getUserGeo } from "../src/geoposition";
 
 beforeAll(() => {
@@ -13,5 +12,5 @@ beforeAll(() => {
 });
 
 test("if return right city when empty weather call", async () => {
-	expect(await getUserGeo()).toMatch('Иваново');
+  expect(await getUserGeo()).toMatch("Иваново");
 });
