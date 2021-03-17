@@ -6,6 +6,7 @@ global.L = require("leaflet");
 let testRootElement;
 
 weather.getWeather = jest.fn();
+JSON.parse = jest.fn(() => ["москва"]);
 
 beforeAll(async () => {
   weather.getWeather.mockImplementationOnce(() => [
@@ -15,6 +16,7 @@ beforeAll(async () => {
     [23.123, 0.45],
   ]);
   testRootElement = document.createElement("div");
+  JSON.parse.mockImplementationOnce(() => 2);
   await drawMainPage(testRootElement);
 });
 
@@ -29,16 +31,16 @@ test("if input field and submit button are on page", () => {
 
 test("if weather change works", async () => {
   expect(testRootElement.querySelector(".userCity").innerHTML).toBe("Москва");
-  testRootElement.querySelector(".cityInput").value = "Ашхабад";
+  testRootElement.querySelector(".cityInput").value = "Ташкент";
   weather.getWeather.mockImplementationOnce(() => [
-    "Ашхабад",
+    "Ташкент",
     25,
     "25d",
     [23.123, 0.45],
   ]);
   testRootElement.querySelector(".submitCity").click();
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  expect(testRootElement.querySelector(".userCity").innerHTML).toBe("Ашхабад");
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  expect(testRootElement.querySelector(".userCity").innerHTML).toBe("Ташкент");
   expect(testRootElement.querySelector(".userCity").innerHTML).not.toBe(
     "Москва"
   );

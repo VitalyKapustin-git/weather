@@ -39,21 +39,22 @@ export function addEL(field, map, button, weather, history) {
         paragraph.textContent = userCity;
         viewedCitiesList.append(paragraph);
 
-        viewedCitiesList
-          .querySelector(`.${userCity}`)
-          .addEventListener("click", async (event) => {
-            await changeWeatherInfo(event.target.innerText, map, weatherBlock);
-          });
-
-        localStorage.setItem(`${userCity}`, `${userCity}`);
-
-        if (localStorage.length > 10) {
-          localStorage.removeItem(
-            historyBlock.querySelector(".viewedCitiesList").childNodes[0]
-              .innerText
-          );
+        let citiesArray = JSON.parse(localStorage.getItem("cities"));
+        citiesArray.push(userCity);
+        if (citiesArray.length > 10) {
+          citiesArray = citiesArray.slice(1);
+          setTimeout(() => {
+            localStorage.removeItem(
+              historyBlock.querySelector(".viewedCitiesList").childNodes[0]
+                .innerText
+            );
+          }, 0);
           viewedCitiesList.removeChild(viewedCitiesList.childNodes[0]);
         }
+        const citiesString = JSON.stringify(citiesArray);
+        setTimeout(() => {
+          localStorage.setItem("cities", citiesString);
+        }, 0);
       } catch {
         window.alert(`Города ${userCity} не существует`);
       }
@@ -62,10 +63,10 @@ export function addEL(field, map, button, weather, history) {
   });
 }
 
-export function drawInputButton(block1, block2, map, block3) {
-  const inputBlock = block1;
-  const historyBlock = block2;
-  const weatherBlock = block3;
+export function drawInputButton(input, history, map, weather) {
+  const inputBlock = input;
+  const historyBlock = history;
+  const weatherBlock = weather;
 
   inputBlock.innerHTML = `
 		<input class='cityInput' placeholder='Введите город' />
@@ -91,27 +92,15 @@ export function drawInputButton(block1, block2, map, block3) {
   addEL(cityInputEl, map, inputButton, weatherBlock, historyBlock);
 }
 
-export function recoverStorageCities(map, root, weather) {
-  const mapObject = map;
+export function recoverStorageCities(root) {
   const rootBlock = root;
-  const weatherBlock = weather;
 
-  Object.values(localStorage).forEach((el) => {
+  JSON.parse(localStorage.getItem("cities")).forEach((el) => {
     const viewedCitiesList = rootBlock.querySelector(".viewedCitiesList");
     const userCity = el;
     const paragraph = document.createElement("p");
     paragraph.className = userCity;
     paragraph.textContent = userCity;
     viewedCitiesList.append(paragraph);
-
-    viewedCitiesList
-      .querySelector(`.${userCity}`)
-      .addEventListener("click", async (event) => {
-        await changeWeatherInfo(
-          event.target.innerText,
-          mapObject,
-          weatherBlock
-        );
-      });
   });
 }

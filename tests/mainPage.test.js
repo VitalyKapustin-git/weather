@@ -5,6 +5,8 @@ global.L = require("leaflet");
 
 let testRootElement;
 
+JSON.parse = jest.fn(() => ["москва"]);
+
 beforeEach(async () => {
   weather.getWeather = jest.fn(() => ["Ташкент", 25, "25d", [23.123, 0.45]]);
   testRootElement = document.createElement("div");
