@@ -13,5 +13,7 @@ module.exports = {
   rules: {
     "import/prefer-default-export": "off",
     "max-len": ["error", { ignoreComments: true, ignoreUrls: true, code: 120 }],
+    "no-alert": "off",
+    "no-console": "off",
   },
 };

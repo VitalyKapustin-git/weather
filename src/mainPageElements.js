@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-
 import { changeWeatherInfo } from "./changeWeather";
 
 export function drawWeatherBlock(el, array) {
