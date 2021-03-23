@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import { getUserGeo } from "./geoposition";
 
 export async function getWeather(city) {

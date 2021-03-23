@@ -1,3 +1,4 @@
 import drawMainPage from "./mainPage";
+import "./css/styles.css";
 
-drawMainPage(document.querySelector("#app"));
+drawMainPage(document.getElementById("app"));

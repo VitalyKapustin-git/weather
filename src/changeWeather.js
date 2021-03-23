@@ -10,6 +10,6 @@ export async function changeWeatherInfo(city, map, weather) {
   weatherBlock.querySelector(
     ".weatherIcon"
   ).src = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
-  weatherBlock.querySelector(".userCity").innerHTML = userCity;
+  weatherBlock.querySelector(".userCity").innerText = userCity;
   changeCityMap(cityCoordinates, map);
 }

@@ -16,6 +16,26 @@
     ></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="weatherBlock">
+        <h2>
+          Вы сейчас смотрите погоду для города - <span class="userCity"></span>
+        </h2>
+        <p>Температура на улице:</p>
+        <p><img class="weatherIcon" /><span class="tempInfo"></span>°</p>
+      </div>
+      <div id="mapid"></div>
+      <div class="inputBlock">
+        <input class="cityInput" placeholder="Введите город" />
+        <button class="submitCity">Узнать погоду</button>
+      </div>
+      <div class="historyBlock">
+        <h3>Просмотренные города/районы</h3>
+        <button class="clearHistoryStorage">
+          Очистить локальное хранилище
+        </button>
+        <div class="viewedCitiesList"></div>
+      </div>
+    </div>
   </body>
 </html>

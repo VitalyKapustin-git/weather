@@ -1,14 +1,11 @@
-/* eslint-disable no-undef */
+const L = require("leaflet");
 
 export function getMapBlock(block, coordinates) {
   const rootBlock = block;
   const [cityLat, cityLng] = coordinates;
-  const mapBlock = document.createElement("div");
-  mapBlock.id = "mapid";
-  mapBlock.style.height = "180px";
-  mapBlock.style.width = "360px";
-  rootBlock.append(mapBlock);
+  const mapBlock = rootBlock.querySelector("#mapid");
   const cityMap = L.map(mapBlock);
+
   cityMap.setView([cityLat, cityLng], 10);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
