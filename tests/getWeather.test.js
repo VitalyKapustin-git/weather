@@ -1,29 +1,27 @@
 import { getWeather } from "../src/getWeather";
 import * as geo from "../src/geoposition";
 
-beforeAll(() => {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () =>
-        Promise.resolve({
-          name: "Лондон",
-          weather: [
-            {
-              icon: "25d",
-            },
-          ],
-          main: {
-            temp: 25,
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve({
+        name: "Лондон",
+        weather: [
+          {
+            icon: "25d",
           },
-          coord: {
-            lat: 23.123,
-            lon: 0.45,
-          },
-        }),
-    })
-  );
-  geo.getUserGeo = jest.fn(() => "Москва");
-});
+        ],
+        main: {
+          temp: 25,
+        },
+        coord: {
+          lat: 23.123,
+          lon: 0.45,
+        },
+      }),
+  })
+);
+geo.getUserGeo = jest.fn(() => "Москва");
 
 test("if return right city when empty weather call", async () => {
   const weatherInfo1 = await getWeather();
