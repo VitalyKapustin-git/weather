@@ -71,15 +71,17 @@ export function addEL(field, map, button, weather, history) {
   });
 }
 
-export function drawInputButton(input, history, map, weather) {
+export function drawInputButton(input, history, map, weather, root) {
   const inputBlock = input;
   const historyBlock = history;
+  const rootBlock = root;
 
   historyBlock
     .querySelector(".clearHistoryStorage")
     .addEventListener("click", () => {
       setTimeout(() => {
-        localStorage.clear();
+        localStorage.setItem("cities", "[]");
+        rootBlock.querySelector(".viewedCitiesList").innerHTML = "";
       }, 0);
     });
 

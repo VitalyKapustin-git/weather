@@ -1,4 +1,4 @@
-const L = require("leaflet");
+import * as L from "leaflet";
 
 export function getMapBlock(block, coordinates) {
   const rootBlock = block;

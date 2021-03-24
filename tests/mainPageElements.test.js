@@ -1,8 +1,6 @@
 import drawMainPage from "../src/mainPage";
 import * as weather from "../src/getWeather";
 
-global.L = require("leaflet");
-
 weather.getWeather = jest.fn();
 const jsonParse = JSON.parse;
 JSON.parse = jest.fn(() => ["москва"]);

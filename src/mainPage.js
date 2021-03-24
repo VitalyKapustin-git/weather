@@ -22,7 +22,7 @@ export default async function drawMainPage(root) {
   const cityMap = getMapBlock(rootBlock, weatherInfo[3]);
 
   drawWeatherBlock(weatherBlock, weatherInfo);
-  drawInputButton(inputBlock, historyBlock, cityMap, weatherBlock);
+  drawInputButton(inputBlock, historyBlock, cityMap, weatherBlock, rootBlock);
 
   addDelegEL(historyBlock, cityMap, weatherBlock);
 
